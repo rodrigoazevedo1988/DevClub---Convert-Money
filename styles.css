@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;   
+}
+
+body {
+     background-color: #8B52FD;
+}
+
+#logo {    
+    display: block;
+    width: 300px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#container {
+    border: 1px solid #ffffff;
+    background: #f4f4f4;
+    width: 375px;
+    border-radius: 10px;
+    padding: 40px 24px 23px;    
+    margin: 0 auto;     
+    border:#F4F4F4;
+}
+
+form {
+    border-color: #F4F4F4;
+    background-color: #f4f4f4;
+    width: 340px;
+    border-radius: 20px;    
+}
+
+label, b {
+    color: #3b3838;
+    align-items: center;
+    font-weight: 600;
+    background-color: #f4f4f4;
+}
+
+input {    
+    width: 327px;
+    height: 48px;
+    padding: 10px;
+    background-color: #ffffff;
+    color: rgb(12, 12, 12);
+    border-color: rgb(0, 0, 0);  
+    font-weight: 600;
+    cursor: pointer;  
+}
+
+input::placeholder {
+    color: rgb(65, 61, 61);
+    font-weight: 600;
+}
+
+button {
+    background-color: #772FD3;
+    border:none;
+    color: white;
+    font-size: 18px;
+    width: 327px;
+    height: 48px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #9655ec;
+    animation-duration: 0.5;
+}
+
+button:active {
+    opacity: 0.6;
+}
+
+option {
+    color: #000000;
+    border-color: #070707;
+    font-weight: 600;
+}
+
+select {
+    padding: 10px;
+    width: 327px;
+    height: 48px;
+    color: rgb(19, 18, 18);
+    border-color: #0a0909;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #ffffff;
+    text-decoration: #070707;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #772fd3;
+    border-radius: 20px;
+    margin-top: 2px;
+    padding: 10px;
+
+}
+
+.seta-img {
+    margin: 15px 0;
+}
+
+.currency-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+
+.currency {
+    color: #777;
+    text-align: center;
+    font-size: 14px;
+}
+
+.currency-value {
+    color: #555;
+    font-weight: 700;
+    font-size: 20px;
+}
