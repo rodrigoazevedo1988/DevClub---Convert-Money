@@ -5,13 +5,25 @@ const currencySelect = document.querySelector("#converter-para"); // Seleciona o
 currencySelect.addEventListener("change", changecurrency) // Adiciona um evento de mudança ao campo de seleção de moeda para ser convertida, que chama a função changecurrency
 convertButton.addEventListener("click", convertValues) // Adiciona um evento de clique ao botão de conversão, que chama a função convertValues
 
-function convertValues (){ // Função que converte o valor da moeda de acordo com o valor do dólar hoje
+async function getDolarToday() {
+    const response = await fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL");
+    const data = await response.json();
+    return Number(data.USDBRL.bid);
+}
+
+async function getEuroToday() {
+    const response = await fetch("https://economia.awesomeapi.com.br/json/last/EUR-BRL");
+    const data = await response.json();
+    return Number(data.EURBRL.bid);
+}
+async function convertValues (){ // Função que converte o valor da moeda de acordo com o valor do dólar hoje
     const inputCurrencyValue = document.querySelector(".input-currency").value; // Seleciona o valor digitado no campo de entrada de moeda
     const currencyValueToConvert = document.querySelector(".currency-value-to-convert"); // Seleciona o elemento que exibirá o valor convertido
     const currencyValueConverted = document.querySelector(".currency-value"); // Seleciona o elemento que exibirá o valor convertido
-    const dolarToday = 5.2; // Valor do dólar hoje
-    const euroToday = 6.2; // Valor do euro hoje
-    console.log(currencySelectde.value, currencySelect.value); // Exibe no console o valor da moeda a ser convertida, o valor digitado e o valor da moeda para ser convertida
+    const dolarToday = await getDolarToday(); // ✅ Consulta do valor do dolar em tempo real chamando a função getDolarToday eu busca da api economia
+    const euroToday = await getEuroToday(); // Valor do euro hoje
+
+    console.log(currencySelectde.value, currencySelect.value, dolarToday, euroToday); // Exibe no console o valor da moeda a ser convertida, o valor digitado e o valor da moeda para ser convertida
     
     if(currencySelect.value == "dolar"){ // Se a moeda para a qual o valor será convertido for o dólar
             currencyValueConverted.innerHTML = new Intl.NumberFormat("en-US", {
