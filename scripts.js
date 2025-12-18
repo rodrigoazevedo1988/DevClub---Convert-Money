@@ -16,14 +16,28 @@ async function getEuroToday() {
     const data = await response.json();
     return Number(data.EURBRL.bid);
 }
+
+async function getLibraToday() {
+    const response = await fetch("https://economia.awesomeapi.com.br/json/last/GBP-BRL");
+    const data = await response.json();
+    return Number(data.GBPBRL.bid);
+}
+
+async function getBTCToday() {
+    const response = await fetch("https://economia.awesomeapi.com.br/json/last/BTC-BRL");
+    const data = await response.json();
+    return Number(data.BTCBRL.bid);
+}
 async function convertValues (){ // Função que converte o valor da moeda de acordo com o valor do dólar hoje
     const inputCurrencyValue = document.querySelector(".input-currency").value; // Seleciona o valor digitado no campo de entrada de moeda
     const currencyValueToConvert = document.querySelector(".currency-value-to-convert"); // Seleciona o elemento que exibirá o valor convertido
     const currencyValueConverted = document.querySelector(".currency-value"); // Seleciona o elemento que exibirá o valor convertido
-    const dolarToday = await getDolarToday(); // ✅ Consulta do valor do dolar em tempo real chamando a função getDolarToday eu busca da api economia
-    const euroToday = await getEuroToday(); // Valor do euro hoje
+    const dolarToday = await getDolarToday(); // Consulta do valor do dolar em tempo real chamando a função getDolarToday eu busca da api economia
+    const euroToday = await getEuroToday(); // Valor do euro hoje by funcion getEuroToday
+    const libraToday = await getLibraToday(); // Valor da libra hoje by funcion getEuroToday
+    const BTCToday = await getBTCToday(); // Valor do BTC hoje by function getBRCToday
 
-    console.log(currencySelectde.value, currencySelect.value, dolarToday, euroToday); // Exibe no console o valor da moeda a ser convertida, o valor digitado e o valor da moeda para ser convertida
+    console.log(currencySelectde.value, currencySelect.value, dolarToday, euroToday, libraToday); // Exibe no console o valor da moeda a ser convertida, o valor digitado e o valor da moeda para ser convertida
     
     if(currencySelect.value == "dolar"){ // Se a moeda para a qual o valor será convertido for o dólar
             currencyValueConverted.innerHTML = new Intl.NumberFormat("en-US", {
@@ -36,6 +50,19 @@ async function convertValues (){ // Função que converte o valor da moeda de ac
             style: "currency",
             currency: "EUR"
             }).format(inputCurrencyValue / euroToday); // Formata o valor convertido para o formato de euro  
+    }
+    if(currencySelect.value == "libra"){ // Se a moeda para a qual o valor será convertido for o libra
+            currencyValueConverted.innerHTML = new Intl.NumberFormat("en-GB", {
+            style: "currency",
+            currency: "GBP"
+            }).format(inputCurrencyValue / libraToday); // Formata o valor convertido para o formato de libra  
+    }
+       if(currencySelect.value == "bitcoin"){ // Se a moeda para a qual o valor será convertido for o bitcoin
+            currencyValueConverted.innerHTML = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "BTC",
+            maximumFractionDigits: 8
+            }).format(inputCurrencyValue / BTCToday); // Formata o valor convertido para o formato de bitcoin  
     }
     currencyValueToConvert.innerHTML = new Intl.NumberFormat("pt-BR", { // Seleciona o formato de moeda brasileira
         style: "currency", 
@@ -54,6 +81,14 @@ function changecurrency(){  // Função que exibe o nome da moeda para a qual o 
    if(currencySelect.value == "euro"){ // Se a moeda para a qual o valor será convertido for o euro
         currencyname.innerHTML = "Euro"
         currencyImgConverted.src = "./img/euro.png"; // Altera a imagem da moeda convertida para a imagem do euro
+   }
+   if(currencySelect.value == "libra"){ // Se a moeda para a qual o valor será convertido for o euro
+        currencyname.innerHTML = "Libra"
+        currencyImgConverted.src = "./img/libra.png"; // Altera a imagem da moeda convertida para a imagem do euro
+   }
+   if(currencySelect.value == "bitcoin"){ // Se a moeda para a qual o valor será convertido for o BTC
+        currencyname.innerHTML = "Bitcoin"
+        currencyImgConverted.src = "./img/bitcoin.png"; // Altera a imagem da moeda convertida para a imagem do BTC
    }
 
   convertValues (); // Chama a função convertValues para converter o valor da moeda
