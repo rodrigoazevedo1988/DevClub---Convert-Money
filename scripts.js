@@ -37,7 +37,13 @@ async function convertValues (){ // Função que converte o valor da moeda de ac
     const libraToday = await getLibraToday(); // Valor da libra hoje by funcion getEuroToday
     const BTCToday = await getBTCToday(); // Valor do BTC hoje by function getBRCToday
 
-    console.log(currencySelectde.value, currencySelect.value, dolarToday, euroToday, libraToday); // Exibe no console o valor da moeda a ser convertida, o valor digitado e o valor da moeda para ser convertida
+    console.log(
+        currencySelectde.value, currencySelect.value, 
+        "Valor do Dolar hoje" ,dolarToday, 
+        "Valor do Euro hoje", euroToday, 
+        "Valor da libra hoje", libraToday,
+        "Valor do Bitcoin hoje",BTCToday
+    ); // Exibe no console o valor da moeda a ser convertida, o valor digitado e o valor da moeda para ser convertida
     
     if(currencySelect.value == "dolar"){ // Se a moeda para a qual o valor será convertido for o dólar
             currencyValueConverted.innerHTML = new Intl.NumberFormat("en-US", {
